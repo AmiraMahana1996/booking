@@ -5,7 +5,7 @@ import {
   getUsers,
   updateUser,
 } from "../controllers/User.js";
-import { isAdmin, verifyToken, verifyUser } from "../utils/verify.js";
+import { verifyAdmin, verifyToken, verifyUser } from "../utils/verify.js";
 
 const router = express.Router();
 // //SHECK AUTHENTICATION
@@ -36,7 +36,7 @@ router.delete("/:id", verifyUser, deleteUser);
 router.get("/:id", verifyUser, getUser);
 
 //GET ALL Users
-router.get("/", isAdmin, getUsers);
+router.get("/", verifyAdmin, getUsers);
 
 router.get("/checkuser", verifyUser, (req, res, next) => {
   res.send("you can delete your account");
